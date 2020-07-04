@@ -1,9 +1,11 @@
 const express = require('express');
+//Since express was installed into node modules; we don't have to give it a filepath. It will automatically look in node-modules
 
 const hostname = 'localhost';
 const port = 3000;
 
 const app = express();
+//returns an express server application. This will now be available under this variable name (app)
 
 app.use((req, res) => {
     console.log(req.headers);
