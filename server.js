@@ -14,6 +14,20 @@ app.use(bodyParser.json());
 
 app.use('/campsites', campsiteRouter);
 
+//__dirname refers to absolute path of current directory of the file that it's in
+app.use(express.static(__dirname + '/public'));
+
+app.use((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
+    res.end('<html><body><h1>This is an Express Server</h1></body></html>');
+});
+
+app.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
+
+
 // app.get('/campsites/:campsiteId', (req, res) => {
 //   res.end(`Will send details of the campsite: ${req.params.campsiteId} to you`);
 // });
@@ -32,16 +46,3 @@ app.use('/campsites', campsiteRouter);
 // app.delete('/campsites/:campsiteId', (req, res) => {
 //   res.end(`Deleting campsite: ${req.params.campsiteId}`);
 // });
-
-//__dirname refers to absolute path of current directory of the file that it's in
-app.use(express.static(__dirname + '/public'));
-
-app.use((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    res.end('<html><body><h1>This is an Express Server</h1></body></html>');
-});
-
-app.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
-});
